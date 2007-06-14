@@ -6,7 +6,7 @@
 Summary:	The ffmpeg module for PHP
 Name:		php-%{modname}
 Version:	0.4.6
-Release:	%mkrel 10
+Release:	%mkrel 11
 Group:		Development/PHP
 License:	GPL
 URL:		http://sourceforge.net/projects/ffmpeg-php/
@@ -16,8 +16,6 @@ Patch1:		ffmpeg-php-0.4.6-system_gd_header.diff
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	ffmpeg-devel >= 0.4.9-0.pre1.4mdk
 BuildRequires:	gd-devel
-Provides:	php5-ffmpeg
-Obsoletes:	php5-ffmpeg
 Epoch:		1
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
@@ -43,6 +41,15 @@ rm -rf include
 ln -snf %{_includedir} include
 
 %build
+export CFLAGS="%{optflags}"
+export CXXFLAGS="%{optflags}"
+export FFLAGS="%{optflags}"
+
+%if %mdkversion >= 200710
+export CFLAGS="$CFLAGS -fstack-protector"
+export CXXFLAGS="$CXXFLAGS -fstack-protector"
+export FFLAGS="$FFLAGS -fstack-protector"
+%endif
 
 phpize
 %configure2_5x --with-libdir=%{_lib} \
@@ -72,5 +79,3 @@ EOF
 %doc CREDITS ChangeLog EXPERIMENTAL INSTALL tests
 %config(noreplace) %attr(0644,root,root) %{_sysconfdir}/php.d/%{inifile}
 %attr(0755,root,root) %{_libdir}/php/extensions/%{soname}
-
-
