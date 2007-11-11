@@ -6,7 +6,7 @@
 Summary:	The ffmpeg module for PHP
 Name:		php-%{modname}
 Version:	0.5.1
-Release:	%mkrel 2
+Release:	%mkrel 3
 Group:		Development/PHP
 License:	GPL
 URL:		http://sourceforge.net/projects/ffmpeg-php/
@@ -63,6 +63,18 @@ install -m755 %{soname} %{buildroot}%{_libdir}/php/extensions/
 %{__cat} > %{buildroot}%{_sysconfdir}/php.d/%{inifile} << EOF
 extension = %{soname}
 EOF
+
+%post
+if [ -f /var/lock/subsys/httpd ]; then
+    %{_initrddir}/httpd restart >/dev/null || :
+fi
+
+%postun
+if [ "$1" = "0" ]; then
+    if [ -f /var/lock/subsys/httpd ]; then
+	%{_initrddir}/httpd restart >/dev/null || :
+    fi
+fi
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
