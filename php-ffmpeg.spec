@@ -5,13 +5,12 @@
 
 Summary:	The ffmpeg module for PHP
 Name:		php-%{modname}
-Version:	0.5.1
-Release:	%mkrel 5
+Version:	0.5.2.1
+Release:	%mkrel 1
 Group:		Development/PHP
 License:	GPL
 URL:		http://sourceforge.net/projects/ffmpeg-php/
 Source0:	%{modname}-php-%{version}.tar.bz2
-Patch0:		php-ffmpeg-php-lib64.diff
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	ffmpeg-devel >= 0.4.9-0.pre1.4mdk
 BuildRequires:	gd-devel
@@ -32,11 +31,6 @@ ffmpeg (mov, avi, mpg, wmv...)
 %prep
 
 %setup -q -n %{modname}-php-%{version}
-%patch0 -p0
-
-# instead of a patch
-rm -rf include
-ln -snf %{_includedir} include
 
 # use system gd header
 rm -f gd.h
