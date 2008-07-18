@@ -6,7 +6,7 @@
 Summary:	The ffmpeg module for PHP
 Name:		php-%{modname}
 Version:	0.5.2.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		Development/PHP
 License:	GPL
 URL:		http://sourceforge.net/projects/ffmpeg-php/
