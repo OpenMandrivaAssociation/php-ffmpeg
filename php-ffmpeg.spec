@@ -5,12 +5,12 @@
 
 Summary:	The ffmpeg module for PHP
 Name:		php-%{modname}
-Version:	0.5.2.1
-Release:	%mkrel 2
+Version:	0.6.0
+Release:	%mkrel 1
 Group:		Development/PHP
 License:	GPL
 URL:		http://sourceforge.net/projects/ffmpeg-php/
-Source0:	%{modname}-php-%{version}.tar.bz2
+Source:		http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-%version.tbz2
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	ffmpeg-devel >= 0.4.9-0.pre1.4mdk
 BuildRequires:	gd-devel
@@ -29,7 +29,6 @@ ffmpeg-php is also useful for reporting the duration and bitrate of audio files
 ffmpeg (mov, avi, mpg, wmv...) 
 
 %prep
-
 %setup -q -n %{modname}-php-%{version}
 
 # use system gd header
