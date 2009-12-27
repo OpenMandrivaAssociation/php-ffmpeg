@@ -34,6 +34,8 @@ ffmpeg (mov, avi, mpg, wmv...)
 # use system gd header
 rm -f gd.h
 
+perl -pi -e "s|PIX_FMT_RGBA32|PIX_FMT_RGB32|g" ffmpeg_frame.c
+
 %build
 %serverbuild
 
