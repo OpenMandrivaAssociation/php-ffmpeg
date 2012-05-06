@@ -10,7 +10,10 @@ Release:	%mkrel 20
 Group:		Development/PHP
 License:	GPL
 URL:		http://sourceforge.net/projects/ffmpeg-php/
-Source:		http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-%version.tbz2
+Source0:	http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-%version.tbz2
+Patch0:		ffmpeg-php-0.6.0-avutil50.patch
+Patch1:		ffmpeg-php-0.6.0-ffmpeg.patch
+Patch2:		ffmpeg-php-0.6.0-log.patch
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	ffmpeg-devel >= 0.4.9-0.pre1.4mdk
 BuildRequires:	gd-devel
@@ -30,11 +33,12 @@ ffmpeg (mov, avi, mpg, wmv...)
 
 %prep
 %setup -q -n %{modname}-php-%{version}
+%patch0 -p1
+%patch1 -p2
+%patch2 -p2
 
 # use system gd header
 rm -f gd.h
-
-perl -pi -e "s|PIX_FMT_RGBA32|PIX_FMT_RGB32|g" ffmpeg_frame.c
 
 %build
 %serverbuild
@@ -79,3 +83,4 @@ fi
 %doc CREDITS ChangeLog EXPERIMENTAL INSTALL tests
 %config(noreplace) %attr(0644,root,root) %{_sysconfdir}/php.d/%{inifile}
 %attr(0755,root,root) %{_libdir}/php/extensions/%{soname}
+
