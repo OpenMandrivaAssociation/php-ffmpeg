@@ -9,7 +9,7 @@ Version:	0.6.0
 Release:	%mkrel 20
 Group:		Development/PHP
 License:	GPL
-URL:		http://sourceforge.net/projects/ffmpeg-php/
+URL:		https://sourceforge.net/projects/ffmpeg-php/
 Source0:	http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-%version.tbz2
 Patch0:		ffmpeg-php-0.6.0-avutil50.patch
 Patch1:		ffmpeg-php-0.6.0-ffmpeg.patch
