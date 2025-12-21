@@ -14,6 +14,11 @@ Source0:	http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-%version.tbz2
 Patch0:		ffmpeg-php-0.6.0-avutil50.patch
 Patch1:		ffmpeg-php-0.6.0-ffmpeg.patch
 Patch2:		ffmpeg-php-0.6.0-log.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	ffmpeg-devel >= 0.4.9-0.pre1.4mdk
 BuildRequires:	gd-devel
